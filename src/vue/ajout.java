@@ -5,6 +5,8 @@
  */
 package vue;
 
+import Controleur.*;
+import Modele.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,9 +26,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.event.*;
+import java.util.HashMap;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -60,7 +64,7 @@ public class ajout {
         JButton button_bulletin = new JButton("Bulletin");
         JButton button_classe = new JButton("Classe");
         JButton button_niveau = new JButton("Niveau");
-        JButton button_annee = new JButton("Anne scolaire");
+        JButton button_annee = new JButton("Annee scolaire");
         JButton button_note = new JButton("Note");
         JButton button_trimestre = new JButton("Trimestre");
         JButton button_discipline = new JButton("Discipline");
@@ -164,6 +168,10 @@ public class ajout {
     *Methode d'affichage d'ajout d'un eleve
      */
     public static void ajout_eleve() {
+        HashMap<Integer, Eleve> h_eleve_all = new HashMap<Integer, Eleve>();
+        DAO<Eleve> eleve_all = DAO_Factory.getEleveDAO();
+        h_eleve_all = eleve_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -181,17 +189,21 @@ public class ajout {
         javax.swing.JTextField jTextField3 = new javax.swing.JTextField();
         javax.swing.JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+       DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Id_eleve","Nom","Prenom","Classe","Id_personne"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[5]; 
+       
+       for (int i : h_eleve_all.keySet()){
+           table[0]=h_eleve_all.get(i).getId_eleve();
+           table[1]=h_eleve_all.get(i).getNom();
+           table[2]=h_eleve_all.get(i).getPrenom();
+           table[3]=h_eleve_all.get(i).getId_classe();
+           table[4]=h_eleve_all.get(i).getId_personne();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
@@ -201,15 +213,15 @@ public class ajout {
             }
         });
 
-        jLabel2.setText("ID classe :");
+       jLabel2.setText("Prenom :");
 
         jLabel3.setText("Entrez les informations de l'eleve que vous voulez ajouter ");
 
         jTextField2.setText("jTextField1");
 
-        jLabel4.setText("ID Personne");
+        jLabel4.setText("ID classe");
 
-        jLabel5.setText("ID eleve : ");
+        jLabel5.setText("Nom : ");
 
         jTextField3.setText("jTextField1");
 
@@ -270,6 +282,10 @@ public class ajout {
     *Methode d'affichage d'ajout d'un enseignant
      */
     public static void ajout_enseignant() {
+        HashMap<Integer, Enseignant> h_ens_all = new HashMap<Integer, Enseignant>();
+        DAO<Enseignant> enseignant_all = DAO_Factory.getEnseignantDAO();
+        h_ens_all = enseignant_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -289,17 +305,22 @@ public class ajout {
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         javax.swing.JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Id_eleve","Nom","Prenom","Classe","Id_personne","Id_discipline"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[6]; 
+       
+       for (int i : h_ens_all.keySet()){
+           table[0]=h_ens_all.get(i).getId_enseignant();
+           table[1]=h_ens_all.get(i).getNom();
+           table[2]=h_ens_all.get(i).getPrenom();
+           table[3]=h_ens_all.get(i).getId_classe();
+           table[4]=h_ens_all.get(i).getId_personne();
+           table[5]=h_ens_all.get(i).getId_discipline();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
@@ -309,21 +330,21 @@ public class ajout {
             }
         });
 
-        jTextField1.setText("jTextField1");
+       jTextField1.setText("jTextField1");
 
-        jLabel2.setText("ID classe :");
+        jLabel2.setText("Prenom :");
 
         jLabel3.setText("Entrez les informations de l'enseignant que vous voulez ajouter ");
 
         jTextField2.setText("jTextField1");
 
-        jLabel4.setText("ID Personne");
+        jLabel4.setText("ID Discipline");
 
-        jLabel5.setText("ID enseignant : ");
+        jLabel5.setText("Nom : ");
 
         jTextField3.setText("jTextField1");
 
-        jLabel6.setText("ID Discipline");
+        jLabel6.setText("ID classe");
 
         jTextField5.setText("jTextField1");
 
@@ -388,6 +409,10 @@ public class ajout {
     *Methode d'affichage d'ajout d'un bulletin
      */
     public static void ajout_bulletin() {
+                            HashMap<Integer, Bulletin> h_bulletin_all = new HashMap<Integer, Bulletin>();
+                    DAO<Bulletin> bulletin_all = DAO_Factory.getBulletinDAO();
+         h_bulletin_all = bulletin_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -407,43 +432,60 @@ public class ajout {
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         javax.swing.JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Id_bulletin","Id_eleve","Id_trimestre","Appreciation"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[4]; 
+       
+       for (int i : h_bulletin_all.keySet()){
+           table[0]=h_bulletin_all.get(i).getId_bulletin();
+           table[1]=h_bulletin_all.get(i).getId_eleve();
+           table[2]=h_bulletin_all.get(i).getId_trimestre();
+           table[3]=h_bulletin_all.get(i).getAppreciation();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //jButton1ActionPerformed(evt);
-            }
+
+                String id_temp1 =jTextField2.getText();    
+                String id_temp2=jTextField3.getText();
+                String id_temp3 =jTextField5.getText();   
+                String id_temp4=jTextField4.getText();
+                
+                int id_bulletin_ajout_bulletin = Integer.parseInt(id_temp1);
+                int id_trimestre_ajout_bulletin = Integer.parseInt(id_temp2);
+                int id_eleve_ajout_bulletin = Integer.parseInt(id_temp3);
+                boolean bulletin_ajout=false;
+                Bulletin bulletin = new Bulletin(id_bulletin_ajout_bulletin, id_trimestre_ajout_bulletin,id_eleve_ajout_bulletin,id_temp4);
+
+             
+                bulletin_ajout=bulletin_all.create(bulletin);
+                frame_ajout.dispose();
+                ajout.ajout_bulletin();            }
         });
 
         jLabel2.setText("ID Trimestre :");
 
         jLabel3.setText("Entrez les informations du bulletin que vous voulez ajouter ");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("");
 
         jLabel5.setText("ID bulletin :");
 
-        jTextField3.setText("jTextField1");
+        jTextField3.setText("");
 
         jLabel4.setText("ID eleve :");
 
-        jTextField4.setText("jTextField1");
+        jTextField4.setText("");
 
         jLabel6.setText("Appreciation :");
 
-        jTextField5.setText("jTextField1");
+        jTextField5.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_ajout.getContentPane());
         frame_ajout.getContentPane().setLayout(layout);
@@ -505,6 +547,10 @@ public class ajout {
     *Methode d'affichage d'ajout d'une classe
      */
     public static void ajout_classe() {
+        HashMap<Integer, Classe> h_classe_all = new HashMap<Integer, Classe>();
+        DAO<Classe> classe_all = DAO_Factory.getClasseDAO();
+        h_classe_all = classe_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -524,43 +570,59 @@ public class ajout {
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         javax.swing.JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Classe","Nom","Id_niveau","Annee"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[4]; 
+       
+       for (int i : h_classe_all.keySet()){
+           table[0]=h_classe_all.get(i).getId_classe();
+           table[1]=h_classe_all.get(i).getNom();
+           table[2]=h_classe_all.get(i).getId_niveau();
+           table[3]=h_classe_all.get(i).getId_Annee();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //jButton1ActionPerformed(evt);
-            }
+                String id_temp1 =jTextField2.getText();    
+                String id_temp2=jTextField3.getText();
+                String id_temp3 =jTextField5.getText();   
+                String id_temp4=jTextField4.getText();
+                
+                int id_classe_ajout_classe = Integer.parseInt(id_temp1);
+                int id_niveau_ajout_classe = Integer.parseInt(id_temp2);
+                int id_annee_ajout_classe = Integer.parseInt(id_temp4);
+                boolean classe_ajout=false;
+                Classe classe = new Classe(id_classe_ajout_classe, id_niveau_ajout_classe,id_temp3,id_annee_ajout_classe);
+
+             
+                classe_ajout=classe_all.create(classe);
+                frame_ajout.dispose();
+                ajout.ajout_classe();            }
         });
 
         jLabel2.setText("ID Niveau :");
 
         jLabel3.setText("Entrez les informations de la classe que vous voulez ajouter ");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("");
 
         jLabel5.setText("ID classe :");
 
-        jTextField3.setText("jTextField1");
+        jTextField3.setText("");
 
         jLabel4.setText("Nom :");
 
-        jTextField4.setText("jTextField1");
+        jTextField4.setText("");
 
         jLabel6.setText("ID annee :");
 
-        jTextField5.setText("jTextField1");
+        jTextField5.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_ajout.getContentPane());
         frame_ajout.getContentPane().setLayout(layout);
@@ -622,6 +684,11 @@ public class ajout {
       *Methode d'affichage d'ajout d'un niveau
      */
     public static void ajout_niveau() {
+               
+        HashMap<Integer, Niveau> h_niv_all = new HashMap<Integer, Niveau>();
+        DAO<Niveau> niveau_all = DAO_Factory.getNiveauDAO();
+        h_niv_all = niveau_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -637,33 +704,45 @@ public class ajout {
         JTextField jTextField2 = new javax.swing.JTextField();
         JLabel jLabel4 = new javax.swing.JLabel();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Nom","Id_niveau"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[2]; 
+       
+       for (int i : h_niv_all.keySet()){
+           table[0]=h_niv_all.get(i).getNom();
+           table[1]=h_niv_all.get(i).getId_niveau();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // jButton1ActionPerformed(evt);
-            }
+                
+                String id_temp1 =jTextField2.getText();    
+                String id_temp2=jTextField1.getText();
+             
+                
+                 int id_niveau_ajout = Integer.parseInt(id_temp1);
+                boolean niveau_ajout=false;
+              Niveau niveau = new Niveau(id_niveau_ajout,id_temp2);
+
+             
+                niveau_ajout=niveau_all.create(niveau);
+                frame_ajout.dispose();
+                ajout.ajout_niveau();                  }
         });
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("Nom");
 
         jLabel2.setText("Nom : ");
 
         jLabel3.setText("Entrez les informations du niveau que vous voulez ajouter ");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("id");
 
         jLabel4.setText("ID : ");
 
@@ -721,7 +800,12 @@ public class ajout {
     /*
       *Methode d'affichage d'ajout annee scolaire
      */
-    public static void ajout_annee_scolaire() {
+    public static void ajout_annee_scolaire() 
+    {
+                                    HashMap<Integer, Annee_scolaire> h_annee_all = new HashMap<Integer, Annee_scolaire>();
+                    DAO<Annee_scolaire> annee_all = DAO_Factory.getAnneescolaireDAO();
+                    h_annee_all = annee_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -735,17 +819,18 @@ public class ajout {
         JTextField jTextField1 = new javax.swing.JTextField();
         JLabel jLabel2 = new javax.swing.JLabel();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+               DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Id_annee","Nom"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[2]; 
+       
+       for (int i : h_annee_all.keySet()){
+           table[0]=h_annee_all.get(i).getId_annee_scolaire();
+           table[1]=(h_annee_all.get(i).getId_annee_scolaire()+2018);
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel1.setText("Rentrez les informations sur l'objet que vous voulez ajouter :");
@@ -753,11 +838,19 @@ public class ajout {
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //jButton1ActionPerformed(evt);
-            }
+                String id_temp1 =jTextField1.getText();    
+                
+                int id_annee_scolaire_ajout_annee = Integer.parseInt(id_temp1);
+                boolean annee_scolaire_ajout=false;
+                Annee_scolaire annee_scolaire = new Annee_scolaire(id_annee_scolaire_ajout_annee);
+
+             
+                annee_scolaire_ajout=annee_all.create(annee_scolaire);
+                frame_ajout.dispose();
+                ajout.ajout_annee_scolaire();            }
         });
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("");
 
         jLabel2.setText("ID : ");
 
@@ -804,6 +897,10 @@ public class ajout {
       *Methode d'affichage d'ajout trimestre
      */
     public static void ajout_trimestre() {
+        HashMap<Integer, Trimestre> h_trim_all = new HashMap<Integer, Trimestre>();
+        DAO<Trimestre> trimestre_all = DAO_Factory.getTrimestreDAO();
+        h_trim_all = trimestre_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -825,17 +922,21 @@ public class ajout {
         JLabel jLabel7 = new javax.swing.JLabel();
         JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Numéro du trimestre","Id_trimestre","Mois de début du trimestre","Mois de fin du trimestre","Année du trimestre"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[5]; 
+       
+       for (int i : h_trim_all.keySet()){
+           table[0] = h_trim_all.get(i).getNumero();
+           table[1] = h_trim_all.get(i).getId_trimestre();
+           table[2] = h_trim_all.get(i).getDebut();
+           table[3] = h_trim_all.get(i).getFin();
+           table[4] = (h_trim_all.get(i).getId_annee() + 2018);
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
@@ -936,6 +1037,10 @@ public class ajout {
       *Methode d'affichage d'ajout discipline
      */
     public static void ajout_discipline() {
+        HashMap<Integer, Discipline> h_dscp_all = new HashMap<Integer, Discipline>();
+        DAO<Discipline> discipline_all = DAO_Factory.getDisciplineDAO();
+        h_dscp_all = discipline_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -951,33 +1056,45 @@ public class ajout {
         JTextField jTextField2 = new javax.swing.JTextField();
         JLabel jLabel4 = new javax.swing.JLabel();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Nom de la matière","Id_discipline"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[2]; 
+       
+       for (int i : h_dscp_all.keySet()){
+           table[0]=h_dscp_all.get(i).getNom_discipline();
+           table[1]=h_dscp_all.get(i).getId_discipline();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // jButton1ActionPerformed(evt);
-            }
+               
+                String id_temp1 =jTextField2.getText();    
+                String id_temp2=jTextField1.getText();
+             
+                
+                 int id_discipline_ajout = Integer.parseInt(id_temp1);
+                boolean discipline_ajout=false;
+              Discipline discipline = new Discipline(id_discipline_ajout,id_temp2);
+
+             
+                discipline_ajout=discipline_all.create(discipline);
+                frame_ajout.dispose();
+                ajout.ajout_discipline();              }
         });
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("");
 
         jLabel2.setText("Nom : ");
 
         jLabel3.setText("Entrez les informations de la discipline que vous voulez ajouter ");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("");
 
         jLabel4.setText("ID : ");
 
@@ -1036,6 +1153,10 @@ public class ajout {
       *Methode d'affichage d'ajout note
      */
     public static void ajout_note() {
+        HashMap<Integer, Note> h_note_all = new HashMap<Integer, Note>();
+        DAO<Note> note_all = DAO_Factory.getNoteDAO();
+        h_note_all = note_all.show_all();
+        
         JFrame frame_ajout = new JFrame();
         frame_ajout.setSize(900, 900);
         frame_ajout.setLocation(450, 100);
@@ -1055,43 +1176,63 @@ public class ajout {
         JLabel jLabel6 = new javax.swing.JLabel();
         JTextField jTextField5 = new javax.swing.JTextField();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        DefaultTableModel defmod = new DefaultTableModel();
+       
+       String[] nom_col = {"Id de la note","Id du detail bulletin","Note","Appreciation"} ;
+       defmod.setColumnIdentifiers(nom_col);
+       Object[] table = new Object[4]; 
+       
+       for (int i : h_note_all.keySet()){
+           table[0] = h_note_all.get(i).getId_note();
+           table[1] = h_note_all.get(i).getId_detail_bulletin();
+           table[2] = h_note_all.get(i).getNote();
+           table[3] = h_note_all.get(i).getAppreciation();
+                   defmod.addRow(table);
+       }
+       jTable2.setModel(defmod);
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //jButton1ActionPerformed(evt);
+                
+                String id_temp1 =jTextField2.getText();    
+                String id_temp2=jTextField3.getText();
+                String id_temp3 =jTextField1.getText();   
+                String id_temp4=jTextField5.getText();
+                
+                 int id_note_ajout = Integer.parseInt(id_temp1);
+          
+
+                int id_detail_bulletin_ajout_note = Integer.parseInt(id_temp2);
+                double note_ajout_note = Double.parseDouble(id_temp4);
+                boolean note_ajout=false;
+                Note note = new Note(id_note_ajout, id_detail_bulletin_ajout_note,id_temp3,note_ajout_note);
+
+             
+                note_ajout=note_all.create(note);
+                frame_ajout.dispose();
+                ajout.ajout_note();          
             }
         });
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("");
 
         jLabel2.setText("ID detail bulletin:");
 
         jLabel3.setText("Entrez les informations de la note que vous voulez ajouter ");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("");
 
         jLabel4.setText("Note");
 
-        jLabel5.setText("ID : ");
+        jLabel5.setText("ID note : ");
 
-        jTextField3.setText("jTextField1");
+        jTextField3.setText("");
 
         jLabel6.setText("Appreciation");
 
-        jTextField5.setText("jTextField1");
+        jTextField5.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_ajout.getContentPane());
         frame_ajout.getContentPane().setLayout(layout);

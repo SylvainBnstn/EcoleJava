@@ -5,6 +5,8 @@
  */
 package vue;
 import vue.*;
+import Modele.*;
+import Controleur.*;
 import vue.recherche;
 
 import java.awt.BorderLayout;
@@ -47,7 +49,7 @@ public class interface_graphique {
         frame_choix.setLocation(450, 100);
         frame_choix.setTitle("choix");
         frame_choix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame_choix.setVisible(true);
+
 
         //affichage des boutons choix graphique ou choix console
         JPanel panel = new JPanel();
@@ -66,13 +68,24 @@ public class interface_graphique {
         panel.add(graphique);
 
         frame_choix.add(panel);
+        
+        frame_choix.setVisible(true);
 
         //Quand on clique sur graphique, ça ouvre la page de connexion a la BDD
         graphique.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame_choix.dispose();
                 interface_graphique.connexion();
-            }
+            } 
+        });
+        //Quand on clique sur console
+        console.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               frame_choix.dispose();
+                Console.console();
+            } 
         });
 
     }
@@ -88,6 +101,7 @@ public class interface_graphique {
         frame_connexion.setLocation(450, 100);
         frame_connexion.setTitle("connexion");
         frame_connexion.setVisible(true);
+        frame_connexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //connexion_label.setLocation(453, 2000);
         //panel.setLayout(new GridLayout(1,9));
@@ -104,6 +118,8 @@ public class interface_graphique {
 
         JLabel mdpBDD = new JLabel("Entrez votre mot de passe ");
         JPasswordField mdpBDDTexte = new JPasswordField(12);
+        
+        
 
         //ajout des affichages dans le premier panel
         JPanel panel = new JPanel();
@@ -143,6 +159,11 @@ public class interface_graphique {
         connect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String serveur_name = serveurTexte.getText();
+                String name_bdd = nomBDDTexte.getText();
+                String log_bdd = loginBDDTexte.getText();
+                String pass_bdd = mdpBDDTexte.getText();
+                frame_connexion.dispose();
                 interface_graphique.accueil();
             }
         });
@@ -158,6 +179,7 @@ public class interface_graphique {
         frame_accueil.setLocation(450, 100);
         frame_accueil.setTitle("accueil");
         frame_accueil.setVisible(true);
+        frame_accueil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //affichage des boutons choix graphique ou choix console
         JPanel panel = new JPanel();
