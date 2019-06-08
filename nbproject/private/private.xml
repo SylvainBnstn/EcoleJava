@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Modele/Classe.java</file>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Modele/Bulletin.java</file>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Bulletin.java</file>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Niveau.java</file>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Trimestre.java</file>
-            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Classe.java</file>
+            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Vue/modification.java</file>
+            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Vue/recherche.java</file>
+            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Factory.java</file>
+            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO.java</file>
+            <file>file:/C:/Users/Sylvain/Desktop/ProjetJava/Projet/src/Controleur/DAO_Annee_scolaire.java</file>
         </group>
     </open-files>
 </project-private>

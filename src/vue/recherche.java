@@ -279,30 +279,45 @@ public class recherche {
         JButton jButton1 = new javax.swing.JButton();
         JButton jButton2 = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Prenom:");
+        
+        String temp =""+ eleve.getId_eleve();
+        jLabel2.setText(temp);
 
-        jLabel2.setText("jLabel1");
+        jLabel3.setText(eleve.getNom());
 
-        jLabel3.setText("jLabel1");
+        jLabel4.setText("Nom:");
 
-        jLabel4.setText("jLabel1");
+        jLabel5.setText(eleve.getPrenom());
 
-        jLabel5.setText("jLabel1");
+        jLabel6.setText("Id de l'élève:");
 
-        jLabel6.setText("jLabel1");
+        jLabel7.setText("Id personne de l'élève:");
 
-        jLabel7.setText("jLabel1");
+        temp=""+eleve.getId_personne();
+        jLabel8.setText(temp);
 
-        jLabel8.setText("jLabel1");
+        jLabel9.setText("Id de la classe:");
 
-        jLabel9.setText("jLabel1");
-
-        jLabel10.setText("jLabel1");
+        temp=""+eleve.getId_classe();
+        jLabel10.setText(temp);
 
         jButton1.setText("Supprimer");
         jButton1.setToolTipText("");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_eleve();
+            }
+        });
 
-        jButton2.setText("Ajouter");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_eleve();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -492,35 +507,50 @@ public class recherche {
        JLabel jLabel11 = new javax.swing.JLabel();
        JLabel jLabel12 = new javax.swing.JLabel();
 
+        String temp= ""+enseignant.getId_classe();
+        jLabel1.setText(temp);
 
-        jLabel1.setText("jLabel1");
+        temp =""+enseignant.getId_enseignant();
+        jLabel2.setText(temp);
 
-        jLabel2.setText("jLabel1");
+        jLabel3.setText(enseignant.getNom());
 
-        jLabel3.setText("jLabel1");
+        jLabel4.setText("Nom de l'enseignant:");
 
-        jLabel4.setText("jLabel1");
+        jLabel5.setText(enseignant.getPrenom());
 
-        jLabel5.setText("jLabel1");
+        jLabel6.setText("Id enseignant:");
 
-        jLabel6.setText("jLabel1");
+        jLabel7.setText("Id personne de l'enseignant:");
 
+        temp=""+enseignant.getId_personne();
+        jLabel8.setText(temp);
+
+        temp=""+enseignant.getId_discipline();
+        jLabel9.setText(temp);
+
+        jLabel10.setText("Id de la discipline de l'enseignant:");
+
+        jLabel11.setText("Prenom de l'enseignant:");
+
+        jLabel12.setText("Id de la classe de l'enseignant:");
+        
         jButton1.setText("Supprimer");
         jButton1.setToolTipText("");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_enseignant();
+            }
+        });
 
-        jButton2.setText("Ajouter");
-
-        jLabel7.setText("jLabel1");
-
-        jLabel8.setText("jLabel1");
-
-        jLabel9.setText("jLabel1");
-
-        jLabel10.setText("jLabel1");
-
-        jLabel11.setText("jLabel1");
-
-        jLabel12.setText("jLabel1");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_enseignant();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -701,26 +731,41 @@ public class recherche {
       JLabel  jLabel11 = new javax.swing.JLabel();
       JLabel  jLabel12 = new javax.swing.JLabel();
 
-        jLabel1.setText("jLabel1");
+      //"Id_bulletin","Id_eleve","Id_trimestre","Appreciation" 
+      jLabel1.setText(bulletin.getAppreciation());
 
-        jLabel2.setText("jLabel1");
+     String temp=""+bulletin.getId_bulletin();
+        jLabel2.setText(temp);
 
-        jLabel3.setText("jLabel1");
+        temp=""+bulletin.getId_eleve();
+        jLabel3.setText(temp);
 
-        jLabel4.setText("jLabel1");
+        jLabel4.setText("Id de l'élève propriétaire du bulletin:");
 
-        jLabel5.setText("jLabel1");
+        temp=""+bulletin.getId_trimestre();
+        jLabel5.setText(temp);
 
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Id bulletin:");
 
+        jLabel11.setText("Id du trimestre:");
+
+        jLabel12.setText("Appreciation générale:");
+        
         jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_bulletin();
+            }
+        });
 
-        jButton2.setText("Ajouter");
-
-        jLabel11.setText("jLabel1");
-
-        jLabel12.setText("jLabel1");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_bulletin();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -885,27 +930,44 @@ public class recherche {
         JButton jButton2 = new javax.swing.JButton();
       JLabel  jLabel11 = new javax.swing.JLabel();
       JLabel  jLabel12 = new javax.swing.JLabel();
+      
+      //"Classe","Nom","Id_niveau","Annee"
 
-        jLabel1.setText("jLabel1");
+      int k = classe.getId_Annee()+2018;
+      String temp = ""+k;
+        jLabel1.setText(temp);
 
-        jLabel2.setText("jLabel1");
+        temp = ""+classe.getId_classe();
+        jLabel2.setText(temp);
 
-        jLabel3.setText("jLabel1");
+        jLabel3.setText(classe.getNom());
 
-        jLabel4.setText("jLabel1");
+        jLabel4.setText("Nom:");
 
-        jLabel5.setText("jLabel1");
+        temp = ""+classe.getId_niveau();
+        jLabel5.setText(temp);
 
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Id classe:");
 
-        jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
+        jLabel11.setText("Id du niveau de la classe:");
 
-        jButton2.setText("Ajouter");
+        jLabel12.setText("Année:");
+        
+         jButton1.setText("Supprimer");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_classe();
+            }
+        });
 
-        jLabel11.setText("jLabel1");
-
-        jLabel12.setText("jLabel1");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_classe();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -1069,19 +1131,30 @@ public class recherche {
         JButton jButton1 = new javax.swing.JButton();
         JButton jButton2 = new javax.swing.JButton();
 
+        jLabel2.setText(niv.getNom());
 
-        jLabel2.setText("jLabel1");
+        String temp=""+niv.getId_niveau();
+        jLabel3.setText(temp);
 
-        jLabel3.setText("jLabel1");
+        jLabel4.setText("Id du niveau:");
 
-        jLabel4.setText("jLabel1");
+        jLabel6.setText("Nom du niveau:");
 
-        jLabel6.setText("jLabel1");
+         jButton1.setText("Supprimer");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_niveau();
+            }
+        });
 
-        jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
-
-        jButton2.setText("Ajouter");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_niveau();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -1246,21 +1319,27 @@ public class recherche {
         JLabel jLabel4 = new javax.swing.JLabel();
         JLabel jLabel6 = new javax.swing.JLabel();
         JButton jButton1 = new javax.swing.JButton();
-        JButton jButton2 = new javax.swing.JButton();
 
+        String temp=""+annee.getId_annee_scolaire();
+        jLabel2.setText(temp);
 
-        jLabel2.setText("jLabel1");
+        int k = annee.getId_annee_scolaire()+2018;
+      temp = ""+k;
+        jLabel3.setText(temp);
 
-        jLabel3.setText("jLabel1");
+        jLabel4.setText("Année:");
 
-        jLabel4.setText("jLabel1");
+        jLabel6.setText("Id de l'année:");
 
-        jLabel6.setText("jLabel1");
+         jButton1.setText("Supprimer");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_annee_scolaire();
+            }
+        });
 
-        jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
-
-        jButton2.setText("Ajouter");
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -1279,8 +1358,6 @@ public class recherche {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(914, Short.MAX_VALUE))
         );
@@ -1297,7 +1374,6 @@ public class recherche {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(913, Short.MAX_VALUE))
         );
@@ -1419,30 +1495,47 @@ public class recherche {
         JButton jButton1 = new javax.swing.JButton();
         JButton jButton2 = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Mois du début du trimestre:");
 
-        jLabel2.setText("jLabel1");
+        String temp = ""+trim.getId_trimestre();
+        jLabel2.setText(temp);
 
-        jLabel3.setText("jLabel1");
+        temp=""+trim.getNumero();
+        jLabel3.setText(temp);
 
-        jLabel4.setText("jLabel1");
+        jLabel4.setText("Numéro du trimestre:");
 
-        jLabel5.setText("jLabel1");
+        temp = ""+trim.getDebut();
+        jLabel5.setText(temp);
 
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Id du trimestre:");
 
-        jLabel7.setText("jLabel1");
+        jLabel7.setText("Année du trimestre:");
 
-        jLabel8.setText("jLabel1");
+         int k = trim.getId_annee()+2018;
+      temp = ""+k;
+        jLabel8.setText(temp);
 
-        jLabel9.setText("jLabel1");
+        jLabel9.setText("Mois de fin du trimestre:");
 
-        jLabel10.setText("jLabel1");
+        temp =""+ trim.getFin();
+        jLabel10.setText(temp);
 
-        jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
+         jButton1.setText("Supprimer");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_trimestre();
+            }
+        });
 
-        jButton2.setText("Ajouter");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_trimestre();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);
@@ -1620,19 +1713,32 @@ public class recherche {
         JButton jButton1 = new javax.swing.JButton();
         JButton jButton2 = new javax.swing.JButton();
 
+        //"Nom de la matière","Id_discipline"
 
-        jLabel2.setText("jLabel1");
+        jLabel2.setText(disc.getNom_discipline());
 
-        jLabel3.setText("jLabel1");
+        String temp = ""+disc.getId_discipline();
+        jLabel3.setText(temp);
 
-        jLabel4.setText("jLabel1");
+        jLabel4.setText("Id de la discipline:");
 
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Nom de la discipline:");
 
-        jButton1.setText("Supprimer");
-        jButton1.setToolTipText("");
+         jButton1.setText("Supprimer");
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 frame_recherche.dispose();
+                Suppression.suppr_discipline();
+            }
+        });
 
-        jButton2.setText("Ajouter");
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame_recherche.dispose();
+                modification.modif_discipline();
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame_recherche.getContentPane());
         frame_recherche.getContentPane().setLayout(layout);

@@ -309,7 +309,7 @@ DefaultTableModel defmod = new DefaultTableModel();
 
         DefaultTableModel defmod = new DefaultTableModel();
        
-       String[] nom_col = {"Id_eleve","Nom","Prenom","Classe","Id_personne","Id_discipline"} ;
+       String[] nom_col = {"Id_enseignant","Nom","Prenom","Classe","Id_personne","Id_discipline"} ;
        defmod.setColumnIdentifiers(nom_col);
        Object[] table = new Object[6]; 
        
